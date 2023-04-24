@@ -68,7 +68,7 @@ public class orderController {
     // getproductValues Start
     @PostMapping("/getproductValues")
     public ResponseEntity<?> getproductRatesByCustcode(@RequestParam Map<String, String> body, Model model) {
-        System.out.println(body);
+        System.out.println( "body:"+ body);
         System.out.println("-------------------");
         System.out.println(body.get("pcode"));
         System.out.println(body.get("unitRate"));
@@ -89,7 +89,7 @@ public class orderController {
     @PostMapping("/createOrder")
     public String createOrder(Model model, @ModelAttribute dailySales order, @RequestParam Map<String, String> orderDetails, HttpServletRequest request, HttpSession session) throws InterruptedException {
         List<String> messages = new ArrayList<>();
-        System.out.println(orderDetails);
+        System.out.println("orderDetails:"+ orderDetails);
         try {
             // daily sales table save
             order.setOrderNo(Integer.parseInt(orderDetails.get("orderDetails[orderNo]")));
@@ -158,19 +158,19 @@ public class orderController {
         sale_order.setRemarks(formattedDate);
         NumberFormat formatter = new DecimalFormat("##.00");
         String amount = formatter.format(sale_order.getAmount()).toString();
-        System.out.println(amount);
+        //System.out.println(amount);
         String disc = formatter.format(sale_order.getDisc()).toString();
-        System.out.println(disc);
+        //System.out.println(disc);
         String netAmount = formatter.format(sale_order.getNetAmount()).toString();
-        System.out.println(netAmount);
+       // System.out.println(netAmount);
         model.addAttribute("orderProducts", orderProducts);
         model.addAttribute("sale_order", sale_order);
         model.addAttribute("one", amount);
-        System.out.println("amount:" + amount);
+        //System.out.println("amount:" + amount);
         model.addAttribute("two", disc);
-        System.out.println("discount:" + disc);
+       // System.out.println("discount:" + disc);
         model.addAttribute("three", netAmount);
-        System.out.println("netAmount:" + netAmount);
+       // System.out.println("netAmount:" + netAmount);
         return "orderDisplay";
     }
     //Get Order End
@@ -227,11 +227,11 @@ public class orderController {
                 String disc = formatter.format(sales.getDisc()).toString();
                 String netAmount = formatter.format(sales.getNetAmount()).toString();
                 model.addAttribute("one", amount);
-                System.out.println("amount:" + amount);
+               // System.out.println("amount:" + amount);
                 model.addAttribute("two", disc);
-                System.out.println("discount:" + disc);
+               // System.out.println("discount:" + disc);
                 model.addAttribute("three", netAmount);
-                System.out.println("netAmount:" + netAmount);
+                //System.out.println("netAmount:" + netAmount);
                 model.addAttribute("products", products1);
                 model.addAttribute("orders", orderedProducts);
                 model.addAttribute("sales", sales);
